@@ -4,46 +4,47 @@ import {map, startWith} from "rxjs/operators";
 import {HttpClient} from "@angular/common/http";
 import {Subject} from "rxjs/internal/Subject";
 import {ProductModel} from "../model/product.model";
+import {WarehouseItemModel} from "../model/warehouse-item.model";
 
 @Injectable({
   providedIn: 'root'
 })
-export class WarehouseService {
+export class WarehouseItemService {
 
-  private products: Array<Wa> = [];
-  private productsStream: Subject<Array<ProductModel>> = new Subject();
+  private warehouseItems: Array<WarehouseItemModel> = [];
+  private warehouseItemsStream: Subject<Array<WarehouseItemModel>> = new Subject();
 
   constructor(private http: HttpClient) { }
 
-  public getProducts(): Observable<Array<ProductModel>> {
-    return this.http.get("/api/products").pipe(map((response: Array<ProductModel>) => {
-      this.products = response;
-      this.productsStream.next(this.products);
-      return this.products;
+  public getWarehouseItems(): Observable<Array<WarehouseItemModel>> {
+    return this.http.get("/api/warehouse-items").pipe(map((response: Array<WarehouseItemModel>) => {
+      this.warehouseItems = response;
+      this.warehouseItemsStream.next(this.warehouseItems);
+      return this.warehouseItems;
     }));
   }
 
-  public getProduct(id: number): Observable<ProductModel> {
-    return this.http.get("/api/products/" + id).pipe(map((response: ProductModel) => {
+  public getWarehouseItem(id: number): Observable<WarehouseItemModel> {
+    return this.http.get("/api/warehouse-items/" + id).pipe(map((response: WarehouseItemModel) => {
       return response;
     }));
   }
 
-  public getProductsStream(): Observable<Array<ProductModel>> {
-    return this.productsStream.pipe(startWith(this.products));
+  public getWarehouseItemsStream(): Observable<Array<WarehouseItemModel>> {
+    return this.warehouseItemsStream.pipe(startWith(this.warehouseItems));
   }
 
-  public removeProduct(id: number) {
-    return this.http.delete("/api/products/" + id);
+  public removeWarehouseItem(id: number) {
+    return this.http.delete("/api/warehouse-items/" + id);
   }
 
-  public saveProduct(product: ProductModel): Observable<ProductModel> {
-    if (product.id) {
-      return this.http.put("/api/products/" + product.id, product).pipe(map((response: ProductModel) => {
+  public saveWarehouseItem(warehouseItem: WarehouseItemModel): Observable<WarehouseItemModel> {
+    if (warehouseItem.id) {
+      return this.http.put("/api/warehouse-items/" + warehouseItem.id, warehouseItem).pipe(map((response: WarehouseItemModel) => {
         return response;
       }));
     } else {
-      return this.http.post("/api/products", product).pipe(map((response: ProductModel) => {
+      return this.http.post("/api/warehouse-items", warehouseItem).pipe(map((response: WarehouseItemModel) => {
         return response;
       }));
     }

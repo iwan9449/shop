@@ -1,23 +1,24 @@
 import {Injectable} from "@angular/core";
 import {ActivatedRouteSnapshot, Resolve} from "@angular/router";
 import {ProductService} from "../service/product.service";
+import {WarehouseItemService} from "../service/warehouse-item.service";
 
 @Injectable()
-export class ProductsResolve implements Resolve<any> {
+export class WarehouseItemsResolve implements Resolve<any> {
 
-  constructor(private productService: ProductService) {}
+  constructor(private warehouseItemService: WarehouseItemService) {}
 
   resolve() {
-    return this.productService.getProducts();
+    return this.warehouseItemService.getWarehouseItems();
   }
 }
 
 @Injectable()
-export class ProductResolve implements Resolve<any> {
+export class WarehouseItemResolve implements Resolve<any> {
 
-  constructor(private productService: ProductService) {}
+  constructor(private warehouseItemService: WarehouseItemService) {}
 
   resolve(route: ActivatedRouteSnapshot) {
-    return this.productService.getProduct(route.params['id']);
+    return this.warehouseItemService.getWarehouseItem(route.params['id']);
   }
 }

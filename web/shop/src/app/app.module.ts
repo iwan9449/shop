@@ -14,13 +14,16 @@ import { ProductsComponent } from './admin-panel/products/products.component';
 import { EditProductCategoryComponent } from './admin-panel/edit-product-category/edit-product-category.component';
 import { EditProductComponent } from './admin-panel/edit-product/edit-product.component';
 import { OrdersComponent } from './admin-panel/orders/orders.component';
-import { WarehouseComponent } from './admin-panel/warehouse/warehouse.component';
+import { WarehouseItemsComponent } from './admin-panel/warehouse-items/warehouse-items.component';
 import {ProductCategoryService} from "./shared/service/product-category.service";
 import {ProductCategoriesResolve, ProductCategoryResolve} from "./shared/resolve/product-category.resolve";
 import {ProductService} from "./shared/service/product.service";
 import {ProductResolve, ProductsResolve} from "./shared/resolve/product.resolve";
 import {DictionaryService} from "./shared/service/dictionary.service";
-import {ProductCategoryDictionaryResolve} from "./shared/resolve/dictionary.resolve";
+import {ProductCategoryDictionaryResolve, ProductDictionaryResolve} from "./shared/resolve/dictionary.resolve";
+import {WarehouseItemService} from "./shared/service/warehouse-item.service";
+import {WarehouseItemResolve, WarehouseItemsResolve} from "./shared/resolve/warehouse-item.resolve";
+import {EditWarehouseItemComponent} from "./admin-panel/edit-warehouse-item/edit-warehouse-item.component";
 
 @NgModule({
   declarations: [
@@ -33,7 +36,8 @@ import {ProductCategoryDictionaryResolve} from "./shared/resolve/dictionary.reso
     EditProductCategoryComponent,
     EditProductComponent,
     OrdersComponent,
-    WarehouseComponent
+    WarehouseItemsComponent,
+    EditWarehouseItemComponent
   ],
   imports: [
     BrowserModule,
@@ -50,7 +54,11 @@ import {ProductCategoryDictionaryResolve} from "./shared/resolve/dictionary.reso
     ProductsResolve,
     ProductResolve,
     DictionaryService,
-    ProductCategoryDictionaryResolve
+    ProductCategoryDictionaryResolve,
+    ProductDictionaryResolve,
+    WarehouseItemService,
+    WarehouseItemsResolve,
+    WarehouseItemResolve
   ],
   bootstrap: [MainComponent]
 })

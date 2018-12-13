@@ -13,3 +13,13 @@ export class ProductCategoryDictionaryResolve implements Resolve<any> {
     return this.dictionaryService.getProductCategoriesDictionary();
   }
 }
+
+@Injectable()
+export class ProductDictionaryResolve implements Resolve<any> {
+
+  constructor(private dictionaryService: DictionaryService) {}
+
+  resolve() {
+    return this.dictionaryService.getProductsDictionary();
+  }
+}

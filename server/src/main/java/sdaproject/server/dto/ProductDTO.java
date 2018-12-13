@@ -8,8 +8,6 @@ public class ProductDTO extends AbstractDTO {
 
     private String description;
 
-    private BigDecimal price;
-
     private ProductCategoryDTO category;
 
     public String getName() {
@@ -26,14 +24,6 @@ public class ProductDTO extends AbstractDTO {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public BigDecimal getPrice() {
-        return price;
-    }
-
-    public void setPrice(BigDecimal price) {
-        this.price = price;
     }
 
     public ProductCategoryDTO getCategory() {

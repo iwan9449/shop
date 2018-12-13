@@ -1,8 +1,8 @@
 package sdaproject.server.service;
 
-import sdaproject.server.dto.WarehouseDTO;
-import sdaproject.server.entity.WarehouseEntity;
+import sdaproject.server.dto.WarehouseItemDTO;
+import sdaproject.server.entity.WarehouseItemEntity;
 
-public interface WarehouseService extends AbstractService<WarehouseEntity, WarehouseDTO> {
+public interface WarehouseItemService extends AbstractService<WarehouseItemEntity, WarehouseItemDTO> {
 
 }

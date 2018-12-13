@@ -11,21 +11,16 @@
             <input [(ngModel)]="product.name" name="name" matInput placeholder="Nazwa produktu">
           </mat-form-field>
           <mat-form-field class="half-width">
-            <input [(ngModel)]="product.price" name="price" matInput placeholder="Cena produktu">
-          </mat-form-field>
-        </div>
-        <div class="form-row">
-          <mat-form-field class="full-width">
-            <textarea [(ngModel)]="product.description" name="description" matInput placeholder="Opis produktu"></textarea>
-          </mat-form-field>
-        </div>
-        <div class="form-row">
-          <mat-form-field class="half-width">
             <mat-select placeholder="Kategoria produktu" [(ngModel)]="product.category.id" name="category">
               <mat-option *ngFor="let category of categoriesDict" [value]="category.id">
                 {{category.name}}
               </mat-option>
             </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="form-row">
+          <mat-form-field class="full-width">
+            <textarea [(ngModel)]="product.description" name="description" matInput placeholder="Opis produktu"></textarea>
           </mat-form-field>
         </div>
       </form>

@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.math.BigDecimal;
 
 @Entity
-@Table(name = "warehouse")
+@Table(name = "warehouse_item")
 @SequenceGenerator(name = "idGenerator", sequenceName = "public.warehouse_item_id_seq", allocationSize = 1)
 public class WarehouseItemEntity extends AbstractEntity {
 

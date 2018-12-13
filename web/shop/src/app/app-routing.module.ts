@@ -7,10 +7,12 @@ import {ProductCategoriesComponent} from "./admin-panel/product-categories/produ
 import {EditProductCategoryComponent} from "./admin-panel/edit-product-category/edit-product-category.component";
 import {EditProductComponent} from "./admin-panel/edit-product/edit-product.component";
 import {OrdersComponent} from "./admin-panel/orders/orders.component";
-import {WarehouseComponent} from "./admin-panel/warehouse/warehouse.component";
+import {WarehouseItemsComponent} from "./admin-panel/warehouse-items/warehouse-items.component";
 import {ProductCategoriesResolve, ProductCategoryResolve} from "./shared/resolve/product-category.resolve";
 import {ProductResolve, ProductsResolve} from "./shared/resolve/product.resolve";
-import {ProductCategoryDictionaryResolve} from "./shared/resolve/dictionary.resolve";
+import {ProductCategoryDictionaryResolve, ProductDictionaryResolve} from "./shared/resolve/dictionary.resolve";
+import {WarehouseItemResolve, WarehouseItemsResolve} from "./shared/resolve/warehouse-item.resolve";
+import {EditWarehouseItemComponent} from "./admin-panel/edit-warehouse-item/edit-warehouse-item.component";
 
 const routes: Routes = [
   {
@@ -36,8 +38,26 @@ const routes: Routes = [
         component: OrdersComponent
       },
       {
-        path: 'warehouse',
-        component: WarehouseComponent
+        path: 'warehouse-items',
+        component: WarehouseItemsComponent,
+        resolve: {
+          warehouseItems: WarehouseItemsResolve
+        }
+      },
+      {
+        path: 'warehouse-items/add',
+        component: EditWarehouseItemComponent,
+        resolve: {
+          productsDict: ProductDictionaryResolve
+        }
+      },
+      {
+        path: 'warehouse-items/edit/:id',
+        component: EditWarehouseItemComponent,
+        resolve: {
+          warehouseItem: WarehouseItemResolve,
+          productsDict: ProductDictionaryResolve
+        }
       },
       {
         path: 'products',

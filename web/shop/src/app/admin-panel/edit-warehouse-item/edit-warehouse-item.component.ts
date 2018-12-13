@@ -1,33 +1,33 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
-import {ProductService} from "../../shared/service/product.service";
-import {ProductCategoryModel} from "../../shared/model/product-category.model";
 import {ProductModel} from "../../shared/model/product.model";
 import {Location} from "@angular/common";
+import {WarehouseItemModel} from "../../shared/model/warehouse-item.model";
+import {WarehouseItemService} from "../../shared/service/warehouse-item.service";
 
 @Component({
   selector: 'app-edit-product',
-  templateUrl: './edit-product.component.html',
-  styleUrls: ['./edit-product.component.css']
+  templateUrl: './edit-warehouse-item.component.html',
+  styleUrls: ['./edit-warehouse-item.component.css']
 })
-export class EditProductComponent implements OnInit {
+export class EditWarehouseItemComponent implements OnInit {
 
-  product: ProductModel = new ProductModel();
-  categoriesDict: Array<ProductCategoryModel> = [];
+  warehouseItem: WarehouseItemModel = new WarehouseItemModel();
+  productsDict: Array<ProductModel> = [];
 
   constructor(private route: ActivatedRoute,
-              private productService: ProductService,
+              private warehouseItemService: WarehouseItemService,
               private location: Location) { }
 
   ngOnInit() {
-    if (this.route.snapshot.data['product']) {
-      this.product = this.route.snapshot.data['product'];
+    if (this.route.snapshot.data['warehouseItem']) {
+      this.warehouseItem = this.route.snapshot.data['warehouseItem'];
     }
-    this.categoriesDict = this.route.snapshot.data['categoriesDict'];
+    this.productsDict = this.route.snapshot.data['productsDict'];
   }
 
-  saveProduct() {
-    this.productService.saveProduct(this.product).subscribe(() => {
+  saveWarehouseItem() {
+    this.warehouseItemService.saveWarehouseItem(this.warehouseItem).subscribe(() => {
       this.back();
     });
   }

@@ -2,7 +2,7 @@ package sdaproject.server.dto;
 
 import java.math.BigDecimal;
 
-public class WarehouseDTO extends AbstractDTO {
+public class WarehouseItemDTO extends AbstractDTO {
 
     private Integer quantity;
 

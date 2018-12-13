@@ -14,9 +14,6 @@ public class ProductEntity extends AbstractEntity {
     @Column
     private String description;
 
-    @Column
-    private BigDecimal price;
-
     @ManyToOne
     @JoinColumn(name = "category_id")
     private ProductCategoryEntity category;
@@ -35,14 +32,6 @@ public class ProductEntity extends AbstractEntity {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public BigDecimal getPrice() {
-        return price;
-    }
-
-    public void setPrice(BigDecimal price) {
-        this.price = price;
     }
 
     public ProductCategoryEntity getCategory() {

@@ -4,25 +4,25 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import sdaproject.server.dto.ProductDTO;
-import sdaproject.server.entity.ProductEntity;
-import sdaproject.server.service.ProductService;
+import sdaproject.server.dto.WarehouseItemDTO;
+import sdaproject.server.entity.WarehouseItemEntity;
+import sdaproject.server.service.WarehouseItemService;
 
 @RestController
-@RequestMapping("/api/warehouses")
-public class WarehouseResource extends AbstractResource<ProductEntity, ProductDTO> {
+@RequestMapping("/api/warehouse-items")
+public class WarehouseItemResource extends AbstractResource<WarehouseItemEntity, WarehouseItemDTO> {
 
-    private final Logger log = LoggerFactory.getLogger(WarehouseResource.class);
+    private final Logger log = LoggerFactory.getLogger(WarehouseItemResource.class);
 
-    private final ProductService productService;
+    private final WarehouseItemService warehouseItemService;
 
-    public WarehouseResource(ProductService productService) {
-        this.productService = productService;
+    public WarehouseItemResource(WarehouseItemService warehouseItemService) {
+        this.warehouseItemService = warehouseItemService;
     }
 
     @Override
-    public ProductService getService() {
-        return productService;
+    public WarehouseItemService getService() {
+        return warehouseItemService;
     }
 
 }

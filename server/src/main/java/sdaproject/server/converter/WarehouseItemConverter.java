@@ -1,23 +1,21 @@
 package sdaproject.server.converter;
 
 import org.springframework.stereotype.Component;
-import sdaproject.server.dto.ProductDTO;
-import sdaproject.server.dto.WarehouseDTO;
-import sdaproject.server.entity.ProductEntity;
-import sdaproject.server.entity.WarehouseEntity;
+import sdaproject.server.dto.WarehouseItemDTO;
+import sdaproject.server.entity.WarehouseItemEntity;
 
 @Component
-public class WarehouseConverter implements Converter<WarehouseEntity, WarehouseDTO> {
+public class WarehouseItemConverter implements Converter<WarehouseItemEntity, WarehouseItemDTO> {
 
     private final ProductConverter productConverter;
 
-    public WarehouseConverter(ProductConverter productConverter) {
+    public WarehouseItemConverter(ProductConverter productConverter) {
         this.productConverter = productConverter;
     }
 
     @Override
-    public WarehouseEntity convertToEntity(WarehouseDTO dto) {
-        WarehouseEntity entity = new WarehouseEntity();
+    public WarehouseItemEntity convertToEntity(WarehouseItemDTO dto) {
+        WarehouseItemEntity entity = new WarehouseItemEntity();
 
         entity.setId(dto.getId());
         entity.setQuantity(dto.getQuantity());
@@ -28,8 +26,8 @@ public class WarehouseConverter implements Converter<WarehouseEntity, WarehouseD
     }
 
     @Override
-    public WarehouseDTO convertToDto(WarehouseEntity entity) {
-        WarehouseDTO dto = new WarehouseDTO();
+    public WarehouseItemDTO convertToDto(WarehouseItemEntity entity) {
+        WarehouseItemDTO dto = new WarehouseItemDTO();
 
         dto.setId(entity.getId());
         dto.setQuantity(entity.getQuantity());
