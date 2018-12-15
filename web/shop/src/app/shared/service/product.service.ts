@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {Observable} from "rxjs/internal/Observable";
 import {map, startWith} from "rxjs/operators";
 import {HttpClient} from "@angular/common/http";
@@ -16,7 +16,7 @@ export class ProductService {
   constructor(private http: HttpClient) { }
 
   public getProducts(): Observable<Array<ProductModel>> {
-    return this.http.get("/api/products").pipe(map((response: Array<ProductModel>) => {
+    return this.http.get("/api/products/open").pipe(map((response: Array<ProductModel>) => {
       this.products = response;
       this.productsStream.next(this.products);
       return this.products;
@@ -24,7 +24,7 @@ export class ProductService {
   }
 
   public getProduct(id: number): Observable<ProductModel> {
-    return this.http.get("/api/products/" + id).pipe(map((response: ProductModel) => {
+    return this.http.get("/api/products/open/" + id).pipe(map((response: ProductModel) => {
       return response;
     }));
   }

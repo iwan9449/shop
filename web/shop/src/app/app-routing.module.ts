@@ -1,5 +1,5 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
 import {HomeComponent} from "./home/home.component";
 import {AdminPanelComponent} from "./admin-panel/admin-panel.component";
 import {ProductsComponent} from "./admin-panel/products/products.component";
@@ -13,6 +13,9 @@ import {ProductResolve, ProductsResolve} from "./shared/resolve/product.resolve"
 import {ProductCategoryDictionaryResolve, ProductDictionaryResolve} from "./shared/resolve/dictionary.resolve";
 import {WarehouseItemResolve, WarehouseItemsResolve} from "./shared/resolve/warehouse-item.resolve";
 import {EditWarehouseItemComponent} from "./admin-panel/edit-warehouse-item/edit-warehouse-item.component";
+import {LoginComponent} from "./login/login.component";
+import {AdminGuard} from "./shared/guard/admin.guard";
+import {GuestGuard} from "./shared/guard/guest.guard";
 
 const routes: Routes = [
   {
@@ -25,8 +28,14 @@ const routes: Routes = [
     component: HomeComponent
   },
   {
+    path: "login",
+    component: LoginComponent,
+    canActivate: [GuestGuard]
+  },
+  {
     path: 'admin-panel',
     component: AdminPanelComponent,
+    canActivate: [AdminGuard],
     children: [
       {
         path: '',

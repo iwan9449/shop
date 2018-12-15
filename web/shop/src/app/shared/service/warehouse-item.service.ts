@@ -1,9 +1,8 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {Observable} from "rxjs/internal/Observable";
 import {map, startWith} from "rxjs/operators";
 import {HttpClient} from "@angular/common/http";
 import {Subject} from "rxjs/internal/Subject";
-import {ProductModel} from "../model/product.model";
 import {WarehouseItemModel} from "../model/warehouse-item.model";
 
 @Injectable({
@@ -17,7 +16,7 @@ export class WarehouseItemService {
   constructor(private http: HttpClient) { }
 
   public getWarehouseItems(): Observable<Array<WarehouseItemModel>> {
-    return this.http.get("/api/warehouse-items").pipe(map((response: Array<WarehouseItemModel>) => {
+    return this.http.get("/api/warehouse-items/open").pipe(map((response: Array<WarehouseItemModel>) => {
       this.warehouseItems = response;
       this.warehouseItemsStream.next(this.warehouseItems);
       return this.warehouseItems;
@@ -25,7 +24,7 @@ export class WarehouseItemService {
   }
 
   public getWarehouseItem(id: number): Observable<WarehouseItemModel> {
-    return this.http.get("/api/warehouse-items/" + id).pipe(map((response: WarehouseItemModel) => {
+    return this.http.get("/api/warehouse-items/open/" + id).pipe(map((response: WarehouseItemModel) => {
       return response;
     }));
   }
