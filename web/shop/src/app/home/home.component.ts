@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {WarehouseItemModel} from "../shared/model/warehouse-item.model";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-home',
@@ -7,9 +9,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  items: Array<WarehouseItemModel> = [];
+  constructor(private route: ActivatedRoute) { }
 
   ngOnInit() {
+    if (this.route.snapshot.data['items']) {
+      this.items = this.route.snapshot.data['items'];
+    }
+  }
+
+  addToCart() {
+
   }
 
 }
