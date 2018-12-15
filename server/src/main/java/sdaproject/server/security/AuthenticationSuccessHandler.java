@@ -30,6 +30,7 @@ public class AuthenticationSuccessHandler extends SimpleUrlAuthenticationSuccess
         UserDTO user = userConverter.convertToDto((UserEntity) authentication.getPrincipal());
 		String loggedUser = objectMapper.writeValueAsString(user);
 		response.setContentType("application/json");
+		response.setStatus(HttpServletResponse.SC_OK);
 		response.getWriter().write(loggedUser);
 	}
 }
