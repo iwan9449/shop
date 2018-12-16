@@ -16,6 +16,9 @@ import {EditWarehouseItemComponent} from "./admin-panel/edit-warehouse-item/edit
 import {LoginComponent} from "./login/login.component";
 import {AdminGuard} from "./shared/guard/admin.guard";
 import {GuestGuard} from "./shared/guard/guest.guard";
+import {CartComponent} from "./cart/cart.component";
+import {NewOrderComponent} from "./new-order/new-order.component";
+import {LoginGuard} from "./shared/guard/login.guard";
 
 const routes: Routes = [
   {
@@ -29,6 +32,15 @@ const routes: Routes = [
     resolve: {
       items: WarehouseItemsResolve
     }
+  },
+  {
+    path: 'cart',
+    component: CartComponent
+  },
+  {
+    path: 'new-order',
+    component: NewOrderComponent,
+    canActivate: [LoginGuard]
   },
   {
     path: "login",

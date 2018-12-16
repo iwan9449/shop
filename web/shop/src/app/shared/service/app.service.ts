@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {startWith} from "rxjs/operators";
+import {map, startWith} from "rxjs/operators";
 import {UserModel} from "../model/user.model";
 import {Subject} from "rxjs/internal/Subject";
 import {Observable} from "rxjs/internal/Observable";
@@ -20,15 +20,20 @@ export class AppService {
     this.loggedUserStream.next(this.loggedUser);
   }
 
+  public getUser(): UserModel {
+    return this.loggedUser;
+  }
+
   public getLoggedUserStream(): Observable<UserModel> {
     return this.loggedUserStream.asObservable().pipe(startWith(this.loggedUser));
   }
 
-  public getLoggedUserInfo() {
-    return this.http.get("/api/logged-user-info").subscribe((loggedUser: UserModel) => {
+  public getLoggedUserInfo(): Observable<UserModel> {
+    return this.http.get("/api/logged-user-info").pipe(map((loggedUser: UserModel) => {
       this.loggedUser = loggedUser;
       this.loggedUserStream.next(this.loggedUser);
-    });
+      return this.loggedUser;
+    }));
   }
 
   public isLoggedIn(): boolean {

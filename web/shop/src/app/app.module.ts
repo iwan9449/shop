@@ -30,9 +30,18 @@ import {AppService} from "./shared/service/app.service";
 import {GuestGuard} from "./shared/guard/guest.guard";
 import {LoginGuard} from "./shared/guard/login.guard";
 import {AdminGuard} from "./shared/guard/admin.guard";
+import {CartService} from "./shared/service/cart.service";
+import {CartComponent} from './cart/cart.component';
+import {NewOrderComponent} from './new-order/new-order.component';
+import {UserModel} from "./shared/model/user.model";
 
-export function initLoggedUserFactory(appService: AppService) {
-  return () => appService.getLoggedUserInfo();
+export function initLoggedUserFactory(appService: AppService, cartService: CartService) {
+  return () => {
+    cartService.getCartInfo();
+    appService.getLoggedUserInfo().subscribe((loggedUser: UserModel) => {
+      return loggedUser;
+    });
+  }
 }
 
 @NgModule({
@@ -48,7 +57,9 @@ export function initLoggedUserFactory(appService: AppService) {
     OrdersComponent,
     WarehouseItemsComponent,
     EditWarehouseItemComponent,
-    LoginComponent
+    LoginComponent,
+    CartComponent,
+    NewOrderComponent
   ],
   imports: [
     BrowserModule,
@@ -61,7 +72,7 @@ export function initLoggedUserFactory(appService: AppService) {
     {
       provide: APP_INITIALIZER,
       useFactory: initLoggedUserFactory,
-      deps: [AppService],
+      deps: [AppService, CartService],
       multi: true
     },
     GuestGuard,
@@ -80,7 +91,8 @@ export function initLoggedUserFactory(appService: AppService) {
     WarehouseItemsResolve,
     WarehouseItemResolve,
     AuthService,
-    AppService
+    AppService,
+    CartService
   ],
   bootstrap: [MainComponent]
 })

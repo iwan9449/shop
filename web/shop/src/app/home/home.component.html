@@ -13,8 +13,9 @@
       </mat-card-content>
       <mat-card-actions>
         <div class="button-row">
-          <button (click)="addToCart()" mat-flat-button color="accent">Więcej</button>
-          <button (click)="addToCart()" mat-flat-button color="primary">Kup</button>
+          <button mat-flat-button color="accent">Więcej</button>
+          <button *ngIf="!isInCart(item.id)" (click)="addToCart(item)" mat-flat-button color="primary">Kup</button>
+          <button *ngIf="isInCart(item.id)" [routerLink]="['/', 'cart']" mat-flat-button color="primary">Koszyk</button>
         </div>
       </mat-card-actions>
     </mat-card>
