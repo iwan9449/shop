@@ -42,7 +42,7 @@
   <mat-card-actions>
     <div class="button-row">
       <h3 class="summary">Wartość zamówienia: {{ cartSummary() | number : '1.2-2' }} zł</h3>
-      <button (click)="clearCart()" mat-flat-button color="accent">Wyczyść koszyk</button>
+      <button (click)="clearCart()" [disabled]="isEmptyCart()" mat-flat-button color="accent">Wyczyść koszyk</button>
       <button [routerLink]="['/', 'new-order']" [disabled]="isEmptyCart()" mat-flat-button color="primary">Zamów</button>
     </div>
   </mat-card-actions>
