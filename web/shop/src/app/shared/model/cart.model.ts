@@ -30,4 +30,8 @@ export class CartModel {
     return this.items.filter(item => item.warehouseItem.id == warehouseItemId).length > 0;
   }
 
+  public isEmpty(): boolean {
+    return this.items.length === 0;
+  }
+
 }

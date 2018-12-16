@@ -19,6 +19,10 @@ export class CartComponent implements OnInit {
     });
   }
 
+  isEmptyCart(): boolean {
+    return this.cartService.isEmpty();
+  }
+
   updateCart() {
     this.cartService.updateCart(this.cart);
   }

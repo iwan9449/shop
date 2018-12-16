@@ -51,6 +51,10 @@ export class CartService {
     return this.cart.summary();
   }
 
+  public isEmpty(): boolean {
+    return this.cart.isEmpty();
+  }
+
   public getCartInfo() {
     let tempCart = localStorage.getItem('cart');
     if (tempCart) {
